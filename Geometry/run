@@ -1,0 +1,22 @@
+#!/bin/sh
+PLATFORM=$(ghc --print-host-platform | sed -e 's/unknown-//' | sed -e 's/mingw32/windows/' | sed -e 's/apple-//' | sed -e 's/darwin/osx/')
+VERSION=$(ghc --numeric-version)
+DIRBASE=`pwd`/..
+PROGPATH=`dirname $1`
+PROGFILE=`basename $1`
+PKGDBPATH=${DIRBASE}/.cabal-sandbox/${PLATFORM}-ghc-${VERSION}-packages.conf.d
+LIBSPATH=${DIRBASE}/Geometry/lib:${DIRBASE}/lib
+
+if $(echo $PLATFORM | grep -q osx)
+then
+	FILEBASE=`basename $1 .hs`
+	DIRNAME=`dirname $1`
+	util/buildgeo ${DIRNAME}/${FILEBASE}.hs
+	./${DIRNAME}/${FILEBASE}.exe
+	cd ${DIRNAME}
+	rm -f *.o *.hi *.exe
+else
+	cd ${PROGPATH}
+	runghc -i${LIBSPATH} -package-db --ghc-arg=${PKGDBPATH} ${PROGFILE}
+fi
+exit 0

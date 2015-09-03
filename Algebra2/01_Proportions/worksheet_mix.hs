@@ -27,9 +27,9 @@ solution16 = salad_rate
 -- 4 gal. of Brand B. Brand A contains 24%
 -- fruit juice and Brand B contains 6% fruit
 -- juice. What percent of the mixture is fruit juice?
-solution17 = xxx
+solution17 = mixture_percent
     where
-    
+    mixture_percent = blank
 
 -- Problem 18
 -- For her birthday party Kristin mixed

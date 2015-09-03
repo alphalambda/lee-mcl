@@ -103,7 +103,17 @@ solution05 = forward_time
 -- plane flew 25 km/h faster than the cargo
 -- plane. After 12 hours they were 4380 km
 -- apart. Find the cargo plane's speed.
-solution06 = blank
+solution06 = cargo_speed
+    where
+    total_distance = 4380
+    total_time = 12
+    passenger_plane_speedup = 25
+    -- You need to solve an equation on paper.
+    -- Use the variable names defined above
+    -- in your equation.
+    -- Then plug the solution here, but
+    -- do not use numbers. Use only variables below:
+    cargo_speed = blank
     
 -- Problem 7
 -- Jill made a trip to her friend's house and
@@ -111,7 +121,16 @@ solution06 = blank
 -- trip back took four hours. She averaged 10 mph
 -- faster on the trip there than on the return trip.
 -- What was Jill's average speed on the outbound trip? 
-solution07 = blank
+solution07 = forward_speed
+    where
+    forward_time = 3
+    return_time = 4
+    forward_speedup = 10
+    -- Solve the equation with the variables above.
+    -- Then plug the solution below, using
+    -- only variables, not numbers.
+    return_speed = blank
+    forward_speed = return_speed + forward_speedup
 
 -- Problem 8
 -- Maria made a trip to the recycling plant
@@ -128,8 +147,16 @@ solution08 = blank
 -- there was 20 km/h. The average speed on the way
 -- back was 24 km/h. How many hours did the trip there
 -- take?
-solution09 = blank
-
+solution09 = forward_time
+    where
+    forward_speed = 20
+    return_speed = 24
+    forward_delay = 1
+    -- Solve the equation with the variables above
+    -- Then plug the solution below. Use only variables,
+    -- not numbers:
+    forward_time = blank
+    
 -- Problem 10
 -- Shawna and Chelsea left the airport at the
 -- same time. They drove in opposite directions.
@@ -182,13 +209,6 @@ solution14 = blank
 -- on the way back was 56.1 km/h.
 -- How many hours did the trip there take?
 solution15 = blank
-
--- Problem 16
--- 8 oz of premium salad mix was made by
--- combining 6 oz of arugula which costs
--- $2/oz with 2 oz of spinach, which costs
--- $6/oz. Find the cost per oz of the mixture.
-solution16 = blank
 
 --------------------------------------------------------          
 blank = error "You need to replace the blanks with your answers"

@@ -7,6 +7,7 @@ module Worksheet_mix where
 -- $2/oz with 2 oz of spinach, which costs
 -- $6/oz. Find the cost per oz of the mixture.
 solution16 = salad_rate
+    -- This is an example already solved for you
     where
     -- Collect data
     salad_amount = 8   -- oz
@@ -26,7 +27,9 @@ solution16 = salad_rate
 -- 4 gal. of Brand B. Brand A contains 24%
 -- fruit juice and Brand B contains 6% fruit
 -- juice. What percent of the mixture is fruit juice?
-solution17 = blank
+solution17 = xxx
+    where
+    
 
 -- Problem 18
 -- For her birthday party Kristin mixed

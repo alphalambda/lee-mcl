@@ -1,5 +1,5 @@
 
-module Worksheet_mix where
+module Key_mix where
 
 -- Problem 16
 -- 8 oz of premium salad mix was made by

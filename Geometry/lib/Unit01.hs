@@ -1,8 +1,12 @@
 
-module Unit01(projection,collinear,dist,ushape,(=~)) where
+module Unit01(projection,collinear,perpendicular,line_line,
+              dist,angle,ushape,ushape_example,
+              quadrilateral,parallelogram,four,
+              (=~)) where
 
 import qualified Drawing as D
 import Geometry
+import Geometry.Utils(Point)
 
 infix 1 =~
 
@@ -46,3 +50,38 @@ ushape points =
           q3 = 0.5*y3 - 2.5
           p4 = 0.5*x4 - 2.5
           q4 = 0.5*y4 + 2.5
+
+ushape_example :: [Point]
+ushape_example = ushape [o,o,o,o] where o=(0,0)
+
+quadrilateral points | across c (a,b) d = [d,b,c,a]
+                     | across a (b,c) d = [a,b,d,c]
+                     | otherwise = [a,b,c,d]
+    where
+    [a,b,c,d] = take 4 points
+
+parallelogram points = [a,b,c,d]
+    where
+    [a,b,c] = take 3 points
+    p_ab = parallel (a,b) c
+    p_bc = parallel (b,c) a
+    [d] = line_line p_ab p_bc
+
+parallel (p,q) a = (a,b)
+    where
+    b = a +| q -|p
+
+perpendicular (p,q) a = (a,b)
+    where
+    (x,y) = q -| p
+    b = a +| (-y,x)
+
+(ax,ay) +| (bx,by) = (ax+bx,ay+by)
+
+(ax,ay) -| (bx,by) = (ax-bx,ay-by)
+
+four points | fst r > 0 = [a,b,c,d]
+            | otherwise = parallelogram [a,b,c]
+    where [r,a',b',c',d'] = take 5 points
+          [a,b,c,d] = quadrilateral [a',b',c',d']
+          

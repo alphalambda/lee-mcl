@@ -5,6 +5,7 @@ import Unit01(collinear,dist,(=~))
 main = drawPicture myPicture
 
 myPicture points =
+    drawLine (a,b) &
     drawPointsLabels [a,b,c] ["A","B","C"] &
     message $ "The point in the middle is " ++ point_in_middle
     where [a,b,c] = take 3 (collinear points)

@@ -1,0 +1,15 @@
+#!/bin/sh
+if [ "x$1" = "x" -o "x$1" = "xnew" ]; then
+	cabal update
+	rm -rf .cabal-sandbox
+	cabal sandbox init
+	cabal install gloss --enable-documentation
+	#cp util/text/dot.git-info-exclude .git/info/exclude
+elif [ "x$1" = "xopt" ]; then
+	cabal install -frasterific diagrams --enable-documentation
+	cabal install svgfonts --enable-documentation
+	cabal install threepenny-gui --enable-documentation --force-reinstalls
+else
+	echo "Options: new | opt"
+	##cabal install chart
+fi

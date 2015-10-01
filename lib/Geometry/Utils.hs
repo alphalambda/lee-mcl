@@ -142,6 +142,7 @@ angle a o b | d >  180 = 360 - d
 
 beyond (a,b) c = angle a b c > 90
 
+find :: (a -> Bool) -> [a] -> Maybe a
 find = L.find
 
 ---------------------------------------------------------------------

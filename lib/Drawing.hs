@@ -8,7 +8,7 @@ import Global
 
 --import qualified Geometry as Geo
 import qualified Geometry.Utils as Geo
-import Geometry.Utils ( (+|), Number, Point )
+import Geometry.Utils ( (+|), Number, Point, find, beyond )
 
 (pixelWidth,pixelHeight) = pixelSize
 pixelRadius = div (min pixelWidth pixelHeight) 2
@@ -157,19 +157,42 @@ drawLabel p text = translate_ (p +| (0.25,0)) $ P.scale textscale textscale $ P.
 drawLabels ps ls = P.pictures $ zipWith drawLabel ps ls
 
 drawSegment (a,b) = P.line [a,b]
+drawThickSegment thickness (a,b) = strokes thickness [a,b]
 
-drawSegmentLabel (pa,pb) (la,lb) =
+drawSegmentLabelWith liner (pa,pb) (la,lb) =
     drawPointLabel pa la
     & drawPointLabel pb lb
-    & P.line [pa,pb]
+    & liner [pa,pb]
 
-drawLine (p,q) | Geo.apart p q = P.line [(xlow,ylow),(xhigh,yhigh)]
+drawThickSegmentLabel thickness = drawSegmentLabelWith (strokes thickness)
+drawSegmentLabel = drawSegmentLabelWith P.line
+
+drawLineWith liner (p,q) | Geo.apart p q = liner line
                | otherwise = P.blank
-    where xlow = -(4*modelSize)
-          xhigh = 4*modelSize
-          ylow = Geo.line_gety l' xlow
-          yhigh = Geo.line_gety l' xhigh
-          l' = Geo.line (p,q)
+    where
+    low = -(4*modelSize)
+    high = 4*modelSize
+    line = case Geo.line (p,q) of
+        Geo.StdLine (a,0,c) -> [(x,low),(x,high)] where x = c/a
+        l' -> [(low,ylow),(high,yhigh)]
+                    where
+                    ylow = Geo.line_gety l' low
+                    yhigh = Geo.line_gety l' high
+
+drawLine = drawLineWith P.line
+drawThickLine thickness = drawLineWith (strokes thickness)
+
+drawRay (p,q) = drawLineWith liner (p,q)
+    where
+    liner line = P.line [p,margin]
+        where
+        Just margin = find (beyond (p,q)) line
+        
+drawThickRay thickness (p,q) = drawLineWith liner (p,q)
+    where
+    liner line = strokes thickness [p,margin]
+        where
+        Just margin = find (beyond (p,q)) line
 
 -- draw an arc passing through A
 drawArc (a,o,b) = translate_ o $ P.arc pstart pstop r

@@ -107,7 +107,7 @@ line (p,q) | apart p q = normalize a b c
 translate_axes_line (p,q) (StdLine (a,b,c)) = normalize a b (c-a*p-b*q)
 
 line_gety :: StdLine -> Number -> Number
-line_gety (StdLine (a,b,c)) x | b /= 0.0 = (c - a*x) / b
+line_gety (StdLine (a,b,c)) x = (c - a*x) / b
 
 dist_point_line p l = c
     where (StdLine (_,_,c)) = translate_axes_line p l

@@ -11,6 +11,6 @@ myPicture points =
     messages ["Perimeter=" ++ show perimeter,
               "Area=" ++ show area]
         where
-        [a,b,c,d,f,g,h,i] = ushape_example -- points
+        [a,b,c,d,f,g,h,i] = ushape points
         perimeter = 0
         area = 0

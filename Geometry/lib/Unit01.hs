@@ -1,7 +1,7 @@
 
-module Unit01(projection,collinear,perpendicular,line_line,
+module Unit01(projection,collinear,perpendicular,line_line,apart,
               dist,angle,ushape,ushape_example,
-              quadrilateral,parallelogram,four,
+              quadrilateral,parallelogram,four,midpoint,
               (=~)) where
 
 import qualified Drawing as D

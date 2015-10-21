@@ -13,5 +13,5 @@ myPicture points =
         where
         [a,b,c,d] = four points
         perimeter = 0
-        answer | angle a b c =~ 90 = "Yes" 
+        answer | (angle a b c) + (angle d c b) =~ 180 = "Yes" 
                | otherwise = "No"

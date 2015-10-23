@@ -1,6 +1,6 @@
 
 import Drawing
-import Unit01(collinear,dist,(=~),check_p02collinear)
+import Unit02(collinear,dist,(=~),check_p02collinear)
 
 main = drawPicture myPicture
 

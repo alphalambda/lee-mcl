@@ -1,6 +1,6 @@
 
 import Drawing
-import Unit01(ushape,ushape_example,projection,dist,check_p04ushape)
+import Unit02(ushape,ushape_example,projection,dist,check_p04ushape)
 
 main = drawPicture myPicture
 

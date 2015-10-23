@@ -1,6 +1,6 @@
 
 import Drawing
-import Unit01(check_p01points)
+import Unit02(check_p01points)
 
 main = drawPicture myPicture
 

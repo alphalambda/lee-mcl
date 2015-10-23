@@ -1,7 +1,7 @@
 
 import Drawing
 
-import Unit01(projection,dist,check_p03triangle)
+import Unit02(projection,dist,check_p03triangle)
 
 main = drawPicture myPicture
 
